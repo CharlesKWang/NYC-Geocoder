@@ -42,6 +42,7 @@ def geo_coder(house_number, boro_code, street_name, zip_code):
     
     
 def Parser(wa1, wa2):
+
     """Reads the output of the geocoder"""
     output = { 
           'firstBoroName': wa1[360 :369].strip(),
@@ -61,7 +62,8 @@ def Parser(wa1, wa2):
           'bbl': wa2[1533:1543].strip(),
           'spatialX': wa2[125:132].strip(),
           'spatialY': wa2[132:139].strip(),
-          'Message': wa1[579:659].strip(),
+
+        'Message': wa1[579:659].strip(),
         }
     return output
 
@@ -90,6 +92,7 @@ def geotransform(street_address_column, borough_column, zip_code_column, in_csv_
         with open(in_csv_file_loc, 'rb') as csvfile:
             csvreader = csv.DictReader(csvfile, delimiter = ',')
             for row in csvreader:
+                #Assumes the street address column is in the form "House# StreetName" (e.g. 32 Jackson Ave)
                 full_address = row[street_address_column].strip()
                 split_full_address = full_address.split(' ')
                 house_number = split_full_address[0]
@@ -106,6 +109,7 @@ def geotransform(street_address_column, borough_column, zip_code_column, in_csv_
                 
 
 if __name__ == '__main__' :
+    #Creates a geocoded csv at the target location, given the user inputs.
     street_address_column = raw_input('Name of street address column: ')
     borough_column = raw_input('Name of borough column: ')
     zip_code_column = raw_input('Name of zipcode column: ')
