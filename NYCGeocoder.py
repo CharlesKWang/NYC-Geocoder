@@ -173,11 +173,12 @@ if __name__ == '__main__' :
     borough_column = raw_input('Name of borough column: ')
     zip_code_column = raw_input('Name of zipcode column: ')
     in_csv_file_loc = raw_input('csvfile location: ')
-    out_csv_file_loc = raw_input('outfile name: ')
-    if out_csv_file_loc[-4:] != '.csv':
-        out_csv_file_loc += '.csv'
+    out_csv_file_name = raw_input('outfile name: ')
+    if out_csv_file_name[-4:] != '.csv':
+        out_csv_file_name += '.csv'
     
     local_path = sys.path[0]
-    out_file = os.path.join(local_path, out_csv_file_loc)
+    out_file = os.path.join(local_path, out_csv_file_name)
     
-    geotransform(street_address_column, borough_column, zip_code_column, in_csv_file_loc, out_csv_file_loc)
+    geotransform(street_address_column, borough_column, zip_code_column, in_csv_file_loc, out_file)
+            
