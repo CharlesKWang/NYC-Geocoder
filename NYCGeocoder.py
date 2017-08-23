@@ -92,12 +92,19 @@ def Parser(wa1, wa2):
     return output
 
 def borough_transform(Borough):
-    """Translate borough names to borough codes. Names must be typed out in full"""
+    """Translate borough names to borough codes."""
     boroughs = {'MANHATTAN': 1,
-                 'BRONX': 2,
-                 'BROOKLYN': 3,
-                 'QUEENS': 4,
-                 'STATEN ISLAND': 5,}
+                'MN': 1,
+                'BRONX': 2,
+                'THE BRONX': 2,
+                'BX': 2,
+                'BROOKLYN': 3,
+                'BK': 3,
+                'BKLYN': 3,
+                'QUEENS': 4,
+                'QN': 4,
+                'STATEN ISLAND': 5,
+                'SI': 5,}
     if Borough.upper() in boroughs:
         return boroughs[Borough.upper()]
     else:
@@ -174,4 +181,3 @@ if __name__ == '__main__' :
     out_file = os.path.join(local_path, out_csv_file_loc)
     
     geotransform(street_address_column, borough_column, zip_code_column, in_csv_file_loc, out_csv_file_loc)
-            
